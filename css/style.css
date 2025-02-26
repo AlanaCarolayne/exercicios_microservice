@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 2rem;
+  background: linear-gradient(
+    0deg,
+    rgba(115, 80, 175, 1) 46%,
+    rgba(207, 178, 250, 1) 100%
+  );
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #1f1d1d;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.mostraSection {
+
+  background: lightblue;
+  border-radius: 10px;
+  padding: 3rem;
+  height: 100%;
+  text-align: center;
+  margin: 1rem auto;
+ 
+}
+
+main {
+  flex: 1;
+}
+
+section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.lisToDo {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.lisToDo li {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  color: #fff;
+}
+
+.lisToDo li:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.spanRequired {
+  color: #ff4444;
+  font-size: 0.875rem;
+  font-weight: bold;
+  visibility: hidden;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin-top: auto;
+}
+
+footer p {
+  color: #fff;
+  font-size: 0.875rem;
+}
+.filtrarProdutos {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  margin: auto;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.filtrarProdutos label {
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.filtrarProdutos input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+

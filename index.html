@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/import.css" />
+    <title>Exercícios Microservice 01</title>
+  </head>
+  <body class="body">
+    <header>
+      <nav>
+        <h2>Exercícios - aula 02</h2>
+
+        <ul>
+          <li>
+            <a href="index.html">Exercícios 1-9</a>
+          </li>
+          <li>
+            <a href="exercicio10.html">Exercício 10</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <!-- ex 2 -->
+        <div class="mostraSection">
+          <button onclick="trocarCorFundo()">Clique aqui!</button>
+        </div>
+      </section>
+
+      <section class="toDoList">
+        <!-- ex 3 -->
+        <div class="form">
+          <h3>To do List</h3>
+          <form action="" class="formToDo">
+            <input type="text" class="list-item" />
+            <button type="submit">Adicionar item</button>
+          </form>
+        </div>
+        <div class="list">
+          <ul class="lisToDo"></ul>
+        </div>
+      </section>
+
+      <section>
+        <!-- ex 4 -->
+        <div>
+          <h3>Chamando as informações da aluna</h3>
+
+          <button onclick="chamarAPI()">chamar Api</button>
+
+          <form class="chamaInfo">
+            <p>Nome: <input type="text" id="nome" /></p>
+            <p>Turma: <input type="text" id="turma" /></p>
+            <p>Turno: <input type="text" id="turno" /></p>
+            <p>Matéria: <input type="text" id="materia" /></p>
+          </form>
+        </div>
+      </section>
+
+      <section>
+        <!-- ex 5 e 9-->
+        <h3>Enviando dados para a Mockable.io</h3>
+        <div>
+          <form class="formularioMock">
+            <input type="text" id="nomeMock" placeholder="Nome" />
+            <span class="spanRequired">Preencha o campo</span>
+            <input type="number" id="idadeMock" placeholder="Idade" />
+            <input type="email" id="emailMock" placeholder="E-mail" />
+            <span class="spanRequired">Preencha o campo</span>
+            <input type="edereco" id="enderecoMock" placeholder="Endereço" />
+            <button type="submit">Enviar</button>
+          </form>
+
+          <p id="mensagemMock"></p>
+        </div>
+      </section>
+
+      <section>
+        <!-- ex 6,7,8 -->
+        <h3>Exibindo produtos</h3>
+        <div>
+          <button onclick="chamarAPIProdutos()">Ver tabela</button>
+          <form class="filtrarProdutos">
+            <label
+              ><input type="checkbox" name="categoria" value="Alimentos" />
+              Alimentos</label
+            >
+            <label
+              ><input type="checkbox" name="categoria" value="Limpeza" />
+              Limpeza</label
+            >
+            <button type="button" onclick="aplicarFiltro()">Filtrar</button>
+            <button type="button" onclick="resetarFiltro()">
+              Resetar Filtro
+            </button>
+          </form>
+          <table class="tbProdutos">
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>FIAP - 2025</p>
+    </footer>
+  </body>
+  <script src="./js/script.js"></script>
+  <script src="./js/chamadasAPI.js"></script>
+  <script src="./js/chamadaPost.js"></script>
+  <script src="./js/toDoList.js"></script>
+  <script src="./js/criaTabelas.js"></script>
+</html>
