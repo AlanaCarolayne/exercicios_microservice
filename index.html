@@ -1,114 +1,267 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercícios</title>
     <link rel="stylesheet" href="./css/import.css" />
-    <title>Exercícios Microservice 01</title>
   </head>
-  <body class="body">
+  <body id="tema" class="temaClaro" onload="carregar()">
     <header>
+      <h2>Exercícios - Aula 02</h2>
       <nav>
-        <h2>Exercícios - aula 02</h2>
-
         <ul>
-          <li>
-            <a href="index.html">Exercícios 1-9</a>
-          </li>
-          <li>
-            <a href="exercicio10.html">Exercício 10</a>
-          </li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="exercicio10.html">Exercicio 10</a></li>
         </ul>
       </nav>
+      <button onclick="trocarTema()">Tema</button>
     </header>
-    <main>
-      <section>
-        <!-- ex 2 -->
-        <div class="mostraSection">
-          <button onclick="trocarCorFundo()">Clique aqui!</button>
-        </div>
-      </section>
+    <section>
+      <h2>Exercício 3</h2>
 
-      <section class="toDoList">
-        <!-- ex 3 -->
-        <div class="form">
-          <h3>To do List</h3>
-          <form action="" class="formToDo">
-            <input type="text" class="list-item" />
-            <button type="submit">Adicionar item</button>
-          </form>
-        </div>
-        <div class="list">
-          <ul class="lisToDo"></ul>
-        </div>
-      </section>
+      <p><input type="text" id="texto" class="ToDo" /></p>
+      <button onclick="adicionarItem()">Adicionar Item</button>
+      <ul id="lista" class="lisToDo"></ul>
 
-      <section>
-        <!-- ex 4 -->
-        <div>
-          <h3>Chamando as informações da aluna</h3>
+      <h2>Exercício 4</h2>
+      <button onclick="trazerObjetoResponse()">Testar response</button>
+      <div id="mostraMensagem"></div>
 
-          <button onclick="chamarAPI()">chamar Api</button>
+      <h2>Exercício 5</h2>
+      <form onsubmit="cadastrarUsuario()" class="formularioMock">
+        <p>Nome: <input type="text" id="nome" /></p>
+        <span class="spanRequired">Preencha o campo</span>
+        <p>Email: <input type="email" id="email" /></p>
+        <span class="spanRequired">Preencha o campo</span>
+        <p>Idade: <input type="number" id="idade" /></p>
+        <span class="spanRequired">Preencha o campo</span>
+        <button>Enviar</button>
+      </form>
 
-          <form class="chamaInfo">
-            <p>Nome: <input type="text" id="nome" /></p>
-            <p>Turma: <input type="text" id="turma" /></p>
-            <p>Turno: <input type="text" id="turno" /></p>
-            <p>Matéria: <input type="text" id="materia" /></p>
-          </form>
-        </div>
-      </section>
+      <h2>Exercício 6 e 8</h2>
+      <table class="tbProdutos">
+        <tr>
+          <th>id</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Idade</th>
+          <th>Ações</th>
+        </tr>
+        <tbody id="tbUsuarios"></tbody>
+      </table>
 
-      <section>
-        <!-- ex 5 e 9-->
-        <h3>Enviando dados para a Mockable.io</h3>
-        <div>
-          <form class="formularioMock">
-            <input type="text" id="nomeMock" placeholder="Nome" />
-            <span class="spanRequired">Preencha o campo</span>
-            <input type="number" id="idadeMock" placeholder="Idade" />
-            <input type="email" id="emailMock" placeholder="E-mail" />
-            <span class="spanRequired">Preencha o campo</span>
-            <input type="edereco" id="enderecoMock" placeholder="Endereço" />
-            <button type="submit">Enviar</button>
-          </form>
-
-          <p id="mensagemMock"></p>
-        </div>
-      </section>
-
-      <section>
-        <!-- ex 6,7,8 -->
-        <h3>Exibindo produtos</h3>
-        <div>
-          <button onclick="chamarAPIProdutos()">Ver tabela</button>
-          <form class="filtrarProdutos">
-            <label
-              ><input type="checkbox" name="categoria" value="Alimentos" />
-              Alimentos</label
-            >
-            <label
-              ><input type="checkbox" name="categoria" value="Limpeza" />
-              Limpeza</label
-            >
-            <button type="button" onclick="aplicarFiltro()">Filtrar</button>
-            <button type="button" onclick="resetarFiltro()">
-              Resetar Filtro
-            </button>
-          </form>
-          <table class="tbProdutos">
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
-    </main>
+      <h2>Exercício 7</h2>
+      <button onclick="filtrarMaiores()">Maiores de 18</button>
+      <button type="button" onclick="limparFiltro()">Resetar Filtro</button>
+    </section>
     <footer>
-      <p>FIAP - 2025</p>
+      <p>Alana Carolayne Moreira Siqueira - 3SIS - RM: 552261</p>
     </footer>
   </body>
-  <script src="./js/script.js"></script>
-  <script src="./js/chamadasAPI.js"></script>
-  <script src="./js/chamadaPost.js"></script>
-  <script src="./js/toDoList.js"></script>
-  <script src="./js/criaTabelas.js"></script>
+  <script src="./js/exercicio2.js"></script>
+  <script>
+
+    // Exercicio 3
+    function adicionarItem() {
+      const texto = document.getElementById("texto");
+      let lista = document.getElementById("lista");
+      let novoItem = document.createElement("li");
+      novoItem.textContent = texto.value;
+
+      novoItem.addEventListener("click", function () {
+        lista.removeChild(novoItem);
+      });
+      lista.appendChild(novoItem);
+      texto.value = "";
+    }
+
+    // Exercicio 4
+    const objetoReponse = {};
+    objetoReponse.mensagem = "Olá, este é um retorno de teste";
+
+    function trazerObjetoResponse() {
+      fetch("http://demo9091797.mockable.io/mensagem")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          document.getElementById("mostraMensagem").innerHTML = data.mensagem;
+        });
+    }
+
+    //Exercicio 5 e 9
+    function cadastrarUsuario() {
+      event.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const idade = parseInt(document.getElementById("idade").value);
+      const campos = [
+        {
+          input: document.getElementById("nome"),
+          span: document.querySelectorAll(".spanRequired")[0],
+        },
+        {
+          input: document.getElementById("email"),
+          span: document.querySelectorAll(".spanRequired")[1],
+        },
+        {
+          input: document.getElementById("idade"),
+          span: document.querySelectorAll(".spanRequired")[2],
+        },
+      ];
+
+      let valido = true;
+      campos.forEach((campo) => {
+        if (!campo.input.value.trim()) {
+          campo.span.style.visibility = "visible"; 
+          valido = false;
+        } else {
+          campo.span.style.visibility = "hidden"; 
+        }
+      });
+      if (valido) {
+        const dados = {
+          nome: campos[0].input.value.trim(),
+          email: campos[1].input.value.trim(),
+          idade: parseInt(campos[2].input.value.trim()),
+        };
+
+        fetch("https://67c47345c4649b9551b3a841.mockapi.io/usuario/usuario", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dados),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Erro ao tentar inserir" + response.status);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            alert("Inserido com sucesso");
+            listarUsuarios(null);
+          })
+          .catch((error) => {
+            console.error("Erro ao tentar inserir " + error.mensagem);
+          });
+      }
+      campos[0].input.value = '',
+       campos[1].input.value = '',
+     campos[2].input.value = ''
+    }
+
+    // Exercicio 6
+    function listarUsuarios(filtro) {
+      fetch("https://67c47345c4649b9551b3a841.mockapi.io/usuario/usuario")
+        .then((response) => response.json())
+        .then((dados) => {
+          let tbUsuario = document.getElementById("tbUsuarios");
+          tbUsuario.innerHTML = "";
+          let dadosUsuarios;
+          if (filtro != null)
+            dadosUsuarios = dados.filter((us) => us.idade >= 18);
+          else dadosUsuarios = dados;
+
+          dadosUsuarios.forEach((item) => {
+            const linha = document.createElement("tr");
+            const tdId = document.createElement("td");
+            tdId.textContent = item.id;
+            const tdNome = document.createElement("td");
+            tdNome.textContent = item.nome;
+            const tdEmail = document.createElement("td");
+            tdEmail.textContent = item.email;
+            const tdIdade = document.createElement("td");
+            tdIdade.textContent = item.idade;
+            const tdAcoes = document.createElement("td");
+
+            const btnEditar = document.createElement("button");
+            btnEditar.textContent = "Editar";
+            btnEditar.addEventListener("click", () => editarUsuario(item.id));
+
+            const btnExcluir = document.createElement("button");
+            btnExcluir.textContent = "Excluir";
+            btnExcluir.addEventListener("click", () => excluirUsuario(item.id));
+
+            tdAcoes.appendChild(btnEditar);
+            tdAcoes.appendChild(btnExcluir);
+
+            linha.appendChild(tdId);
+            linha.appendChild(tdNome);
+            linha.appendChild(tdEmail);
+            linha.appendChild(tdIdade);
+            linha.appendChild(tdAcoes);
+
+            tbUsuario.appendChild(linha);
+          });
+        });
+    }
+
+    //Exercicio 8
+    function editarUsuario(id) {
+      const novoNome = prompt("Digite o novo nome:");
+      if (novoNome !== null) {
+        fetch(
+          `https://67c47345c4649b9551b3a841.mockapi.io/usuario/usuario/${id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ nome: novoNome }),
+          }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Erro ao editar usuário");
+            }
+            return response.json();
+          })
+          .then(() => {
+            alert("Usuário editado com sucesso");
+            listarUsuarios(null);
+          })
+          .catch((error) => {
+            console.error("Erro ao editar usuário:", error);
+          });
+      }
+    }
+
+    // Exercicio 8
+    function excluirUsuario(id) {
+      if (confirm("Tem certeza que deseja excluir este usuário?")) {
+        fetch(
+          `https://67c47345c4649b9551b3a841.mockapi.io/usuario/usuario/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Erro ao excluir usuário");
+            }
+            return response.json();
+          })
+          .then(() => {
+            alert("Usuário excluído com sucesso");
+            listarUsuarios(null);
+          })
+          .catch((error) => {
+            console.error("Erro ao excluir usuário:", error);
+          });
+      }
+    }
+
+    listarUsuarios(null);
+
+    function limparFiltro() {
+      listarUsuarios(null);
+    }
+
+    function filtrarMaiores() {
+      listarUsuarios(18);
+    }
+  </script>
 </html>

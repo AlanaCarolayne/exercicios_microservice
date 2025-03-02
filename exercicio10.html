@@ -1,55 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercício 10</title>
-    <link rel="stylesheet" href="./css/import.css">
-</head>
-<body class="body">
+    <link rel="stylesheet" href="./css/import.css" />
+  </head>
+  <body id="tema" class="temaClaro" onload="carregar()">
     <header>
-        <nav>
-            <h2>Exercício 10</h2>
-            <ul>
-                <li><a href="index.html">Exercícios 1-9</a></li>
-                <li><a href="exercicio10.html">Exercício 10</a></li>
-            </ul>
-        </nav>
+      <h2>Exercício 10</h2>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="exercicio10.html">Exercicio 10</a></li>
+        </ul>
+      </nav>
+      <button onclick="trocarTema()">Tema</button>
     </header>
     <main>
-        <section>
-            <h3>Cadastro novos dados</h3>
-            <div>
-                <form class="formularioNovosCadastros">
-                    <input type="text" id="nomeNovosCadastros" placeholder="Nome" required>
-                    <input type="number" id="idadeNovosCadastros" placeholder="Idade" required>
-                    <input type="email" id="emailNovosCadastros" placeholder="E-mail" required>
-                    <input type="text" id="enderecoNovosCadastros" placeholder="Endereço" required>
-                    <button type="submit">Enviar</button>
-                </form>
-                <p id="mensagemMock"></p>
-            </div>
-        </section>
-        <section>
-            <h3>Listar dados</h3>
-            <div>
-                <table class="tbNovosCadastros">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Idade</th>
-                            <th>Email</th>
-                            <th>Endereço</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </section>
+      <section>
+        <h3>Cadastro novos dados</h3>
+        <div>
+          <form class="formularioNovosCadastros">
+            <input
+              type="text"
+              id="nomeNovosCadastros"
+              placeholder="Nome"
+              required
+            />
+            <input
+              type="number"
+              id="idadeNovosCadastros"
+              placeholder="Idade"
+              required
+            />
+            <input
+              type="email"
+              id="emailNovosCadastros"
+              placeholder="E-mail"
+              required
+            />
+            <input
+              type="text"
+              id="enderecoNovosCadastros"
+              placeholder="Endereço"
+              required
+            />
+            <button type="submit">Enviar</button>
+          </form>
+          <p id="mensagemMock"></p>
+        </div>
+      </section>
+      <section>
+        <h3>Listar dados</h3>
+        <div>
+          <table class="tbNovosCadastros">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Email</th>
+                <th>Endereço</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
     </main>
     <footer>
-        <p>FIAP - 2025</p>
+      <p>FIAP - 2025</p>
     </footer>
-    <script src="./js/exercicio10.js"></script>
-</body>
+    <script src="./js/exercicio2.js"></script>
+    <script>
+      document
+        .querySelector(".formularioNovosCadastros")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const nome = document.getElementById("nomeNovosCadastros");
+          const email = document.getElementById("emailNovosCadastros");
+          const idade = document.getElementById("idadeNovosCadastros");
+          const endereco = document.getElementById("enderecoNovosCadastros");
+          const mensagemElement = document.getElementById("mensagemMock");
+
+          const dados = {
+            nome: nome.value.trim(),
+            email: email.value.trim(),
+            idade: idade.value.trim(),
+            endereco: endereco.value.trim(),
+          };
+
+          try {
+            const response = await fetch("http://demo9091797.mockable.io/InfoUser", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(dados),
+            });
+
+            const resposta = await response.json();
+            console.log(resposta);
+
+            if (response.ok) {
+              mensagemElement.textContent =
+                resposta.mensagem || "Dados enviados com sucesso!";
+              mensagemElement.className = "success";
+              adicionarLinhaNaTabela(dados);
+              nome.value = "";
+              email.value = "";
+              idade.value = "";
+              endereco.value = "";
+            } else {
+              mensagemElement.textContent = "Erro ao enviar os dados!";
+              mensagemElement.className = "error";
+            }
+          } catch (error) {
+            console.error("Erro na requisição:", error);
+            mensagemElement.textContent = "Falha na comunicação com o servidor.";
+            mensagemElement.className = "error";
+          }
+        });
+
+      function carregarNovosCadastros() {
+        fetch("http://demo9091797.mockable.io/InfoUser")
+          .then((response) => response.json())
+          .then((data) => {
+            if (Array.isArray(data)) {
+              criarTabelaNovosCadastros(data);
+            } else {
+              console.error("Formato de dados inválido:", data);
+            }
+          })
+          .catch((error) => console.log("Erro ao buscar dados:", error));
+      }
+
+      function criarTabelaNovosCadastros(dados) {
+        const tbody = document.querySelector(".tbNovosCadastros tbody");
+        tbody.innerHTML = "";
+
+        dados.forEach((user) => {
+          adicionarLinhaNaTabela(user);
+        });
+      }
+
+      function adicionarLinhaNaTabela(user) {
+        const tbody = document.querySelector(".tbNovosCadastros tbody");
+
+        const tr = document.createElement("tr");
+        const tdNome = document.createElement("td");
+        const tdIdade = document.createElement("td");
+        const tdEmail = document.createElement("td");
+        const tdEndereco = document.createElement("td");
+
+        tdNome.textContent = user.nome;
+        tdIdade.textContent = user.idade;
+        tdEmail.textContent = user.email;
+        tdEndereco.textContent = user.endereco;
+
+        tr.appendChild(tdNome);
+        tr.appendChild(tdIdade);
+        tr.appendChild(tdEmail);
+        tr.appendChild(tdEndereco);
+
+        tbody.appendChild(tr);
+      }
+    </script>
+  </body>
 </html>

@@ -1,8 +1,13 @@
 .tbProdutos,
 .tbNovosCadastros {
   width: 100%;
+ 
   border-collapse: collapse;
   margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: auto;
 }
 
 .tbProdutos th,
@@ -12,10 +17,16 @@
   padding: 0.75rem;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
 }
 
 .tbProdutos th,
 .tbNovosCadastros th {
   background: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
 }
+
+.tbProdutos tr:hover,
+.tbNovosCadastros tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
